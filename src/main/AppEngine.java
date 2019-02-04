@@ -2,6 +2,9 @@ package main;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import database.MarkerSQLProvider;
 import database.SQLProvider;
 import entity.Marker;
@@ -12,11 +15,17 @@ import entity.Marker;
 
 public class AppEngine {
 	
-//	private static //logger //logger = LogManager.get//logger(AppEngine.class);
+    private static Logger logger =
+    		LogManager.getLogger(AppEngine.class);
 	
 	public static void main(String[] args) {
-
-		runMarkerSQLProviderExample();
+        logger.trace("Tracking the excecution flow");
+        logger.debug("I'm trying to identify an issue");
+        logger.info("General information message");
+        logger.warn("Something happened we should consider");
+        logger.error(new RuntimeException("An error occurred"));
+        logger.fatal("Very serious, let application crash");
+		//runMarkerSQLProviderExample();
 
 
 	}
