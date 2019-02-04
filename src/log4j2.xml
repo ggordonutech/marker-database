@@ -11,10 +11,20 @@
         <Appender type="File" name="FileAppender" fileName="${mainLogFileName}">
             <Layout type="PatternLayout" pattern="%d %p %C [%t] %m%n" />
         </Appender>
+        <Appender type="File" name="AppEngineFileAppender" 
+            fileName="log/appengine.log">
+            <Layout type="PatternLayout" 
+                pattern="%d %p %C [%t] %m%n" />
+        </Appender>
         <!-- /General Appenders -->
 
     </Appenders>
     <Loggers>
+        <Logger name="main.AppEngine" level="all" 
+            additivity="false">
+            <AppenderRef ref="AppEngineFileAppender"/>
+            <AppenderRef ref="ConsoleAppender" />
+        </Logger>
         <Root level="error">
             <AppenderRef ref="ConsoleAppender" />
             <AppenderRef ref="FileAppender" />
