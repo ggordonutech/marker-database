@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorinterval="30" status="info" strict="true">
+    <Properties>
+        <Property name="mainLogFileName">log/inventory.log</Property>
+    </Properties>
+    <Appenders>
+        <!-- General Appenders -->
+        <Appender type="Console" name="ConsoleAppender">
+            <Layout type="PatternLayout" pattern="%d %p [%t] %m%n" />
+        </Appender>
+        <Appender type="File" name="FileAppender" fileName="${mainLogFileName}">
+            <Layout type="PatternLayout" pattern="%d %p %C [%t] %m%n" />
+        </Appender>
+        <!-- /General Appenders -->
+
+    </Appenders>
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="ConsoleAppender" />
+            <AppenderRef ref="FileAppender" />
+        </Root>
+    </Loggers>
+</Configuration>
