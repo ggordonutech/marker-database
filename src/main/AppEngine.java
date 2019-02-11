@@ -5,9 +5,12 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import database.LaptopDatabase;
 import database.MarkerSQLProvider;
 import database.SQLProvider;
+import entity.Laptop;
 import entity.Marker;
+import entity.ScreenSize;
 
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.//logger;
@@ -17,15 +20,38 @@ public class AppEngine {
 	
     private static Logger logger =
     		LogManager.getLogger(AppEngine.class);
+    
+    
 	
 	public static void main(String[] args) {
-        logger.trace("Tracking the excecution flow");
-        logger.debug("I'm trying to identify an issue");
-        logger.info("General information message");
-        logger.warn("Something happened we should consider");
-        logger.error(new RuntimeException("An error occurred"));
-        logger.fatal("Very serious, let application crash");
-		//runMarkerSQLProviderExample();
+//        logger.trace("Tracking the excecution flow");
+//        logger.debug("I'm trying to identify an issue");
+//        logger.info("General information message");
+//        logger.warn("Something happened we should consider");
+//        logger.error(new RuntimeException("An error occurred"));
+//        logger.fatal("Very serious, let application crash");
+//		//runMarkerSQLProviderExample();
+		
+		SQLProvider<Laptop> db = new LaptopDatabase();
+		int recordsAffected = 
+				db.add(new Laptop(0,"ASUS",ScreenSize.SIZE_12INCH));
+		if(recordsAffected == 1) {
+			System.out.println("ASUS added successfully");
+		}else {
+			System.out.println("ASUS not added");
+		}
+		recordsAffected = 
+				db.add(new Laptop(0,"DELL",ScreenSize.SIZE_12INCH));
+		if(recordsAffected == 1) {
+			System.out.println("DELL added successfully");
+		}else {
+			System.out.println("DELL not added");
+		}
+		List<Laptop> results = db.selectAll();
+		System.out.println("--- Retrieved -- ");
+		for(Laptop laptop : results) {
+			System.out.println(laptop);
+		}
 
 
 	}
